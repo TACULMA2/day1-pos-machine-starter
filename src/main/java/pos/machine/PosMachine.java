@@ -16,6 +16,19 @@ public class PosMachine {
         return receipt.toString();
     }
 
+    private int generateReceipt(List<Item> items, StringBuilder receipt, Map<String, Integer> itemCounts) {
+        int [] total = {0};
+        itemCounts.forEach((barcode, quantity) -> {
+            Item item = findItemByBarcode(items, barcode);
+            if (item != null) {
+                int subtotal = item.getPrice()*quantity;
+                appendLineToReceipt(receipt, item.getName(), quantity, item.getPrice(), subtotal);
+                total[0] += subtotal;
+            }
+        });
+        return total[0];
+    }
+
     private Map<String, Integer> countItemOccurrences(List<String> barcodes) {
         Map<String, Integer> itemCounts = new LinkedHashMap<>();
         for (String barcode:barcodes) {
