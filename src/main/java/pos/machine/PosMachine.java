@@ -16,6 +16,12 @@ public class PosMachine {
         return receipt.toString();
     }
 
+    private void appendTotal(StringBuilder receipt, int total) {
+        receipt.append("----------------------\n");
+        receipt.append("Total: ").append(total).append(" (yuan)\n");
+        receipt.append("**********************");
+    }
+
     private int generateReceipt(List<Item> items, StringBuilder receipt, Map<String, Integer> itemCounts) {
         int [] total = {0};
         itemCounts.forEach((barcode, quantity) -> {
