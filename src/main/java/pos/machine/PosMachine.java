@@ -29,6 +29,11 @@ public class PosMachine {
         return total[0];
     }
 
+    private Item findItemByBarcode(List<Item> items, String barcode) {
+        return items.stream()
+                .filter(item -> item.getBarcode().equals(barcode)).findFirst().orElse(null);
+    }
+
     private Map<String, Integer> countItemOccurrences(List<String> barcodes) {
         Map<String, Integer> itemCounts = new LinkedHashMap<>();
         for (String barcode:barcodes) {
