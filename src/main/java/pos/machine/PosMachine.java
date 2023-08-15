@@ -29,6 +29,12 @@ public class PosMachine {
         return total[0];
     }
 
+    private void appendLineToReceipt(StringBuilder receipt, String name, Integer quantity, int price, int subtotal) {
+        receipt.append("Name: ").append(name).append(", Quantity: ").append(quantity);
+        receipt.append(", Unit price: ").append(price).append(" (yuan), Subtotal: ").append(subtotal)
+                .append(" (yuan)\n");
+    }
+
     private Item findItemByBarcode(List<Item> items, String barcode) {
         return items.stream()
                 .filter(item -> item.getBarcode().equals(barcode)).findFirst().orElse(null);
