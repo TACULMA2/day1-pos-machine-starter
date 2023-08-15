@@ -1,5 +1,6 @@
 package pos.machine;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,6 +14,14 @@ public class PosMachine {
 
         appendTotal(receipt, total);
         return receipt.toString();
+    }
+
+    private Map<String, Integer> countItemOccurrences(List<String> barcodes) {
+        Map<String, Integer> itemCounts = new LinkedHashMap<>();
+        for (String barcode:barcodes) {
+            itemCounts.put(barcode, itemCounts.getOrDefault(barcode, 0) +1);
+        }
+        return itemCounts;
     }
 
 }
